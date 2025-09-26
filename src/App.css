@@ -1,38 +1,160 @@
-.App {
-  text-align: center;
+/* General Body Styles */
+body {
+    background-color: #121212; /* Dark background */
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Main App Container */
+.app {
+    background-color: #1e1e1e;
+    width: 90%;
+    max-width: 600px;
+    min-height: 400px;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Header Styles */
+.app-header {
+    text-align: center;
+    border-bottom: 2px solid #444;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.app-header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    color: #bb86fc; /* A nice purple accent */
 }
 
-.App-link {
-  color: #61dafb;
+.app-header p {
+    margin: 5px 0 0;
+    font-size: 1.1rem;
+    color: #b0b0b0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Main Content Area */
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Menu Screen Styles */
+.menu-section {
+    text-align: center;
+}
+
+.menu-section h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.menu-section p {
+    font-size: 1.2rem;
+    color: #b0b0b0;
+    margin-bottom: 30px;
+}
+
+/* Score Screen Styles */
+.score-section {
+    display: flex;
+    flex-direction: column;
+    font-size: 24px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.score-section h2 {
+    font-size: 2.5rem;
+    color: #03dac6; /* A teal accent for scores */
+    margin-bottom: 30px;
+}
+
+/* Buttons (General) */
+button {
+    width: 100%;
+    font-size: 18px;
+    color: #ffffff;
+    background-color: #333333;
+    border-radius: 15px;
+    display: flex;
+    padding: 15px;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #bb86fc;
+}
+
+/* Start and Retry Buttons */
+.start-button, .retry-button {
+    background-color: #03dac6;
+    color: #121212;
+    font-weight: bold;
+    padding: 20px 40px;
+    width: auto;
+    font-size: 20px;
+}
+
+.start-button:hover, .retry-button:hover {
+    background-color: #018786;
+    color: #ffffff;
+}
+
+
+/* Question and Answer Section */
+.question-section {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.question-count {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    color: #b0b0b0;
+}
+
+.question-count span {
+    font-size: 1.8rem;
+    color: #ffffff;
+}
+
+.question-text {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.answer-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Specific Answer Buttons */
+.answer-section button {
+    justify-content: flex-start; /* Align text to the left */
+}
+
+.answer-section button:hover {
+    background-color: #555555;
 }
