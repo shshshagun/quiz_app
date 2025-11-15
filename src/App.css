@@ -10,6 +10,43 @@ body {
     margin: 0;
 }
 
+/* --- Keyframe Animations --- */
+
+/* Fade-in animation for content sections */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Timer bar shrinking animation */
+@keyframes shrinkTimer {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0%;
+    }
+}
+
+/* Score message pop-in animation */
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
 /* Main App Container */
 .app {
     background-color: #1e1e1e;
@@ -21,6 +58,7 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
+    overflow: hidden; /* Hide overflow to keep animations clean */
 }
 
 /* Header Styles */
@@ -51,6 +89,12 @@ main {
     justify-content: center;
 }
 
+/* Animation Wrapper for content switching */
+.content-wrapper {
+    animation: fadeIn 0.5s ease-out;
+}
+
+
 /* Menu Screen Styles */
 .menu-section {
     text-align: center;
@@ -80,7 +124,7 @@ main {
 .score-section h2 {
     font-size: 2.5rem;
     color: #03dac6; /* A teal accent for scores */
-    margin-bottom: 30px;
+    margin-bottom: 10px; /* Reduced margin */
 }
 
 /* Buttons (General) */
@@ -97,11 +141,16 @@ button {
     border: none;
     cursor: pointer;
     margin-top: 10px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.1s ease;
 }
 
 button:hover {
     background-color: #bb86fc;
+}
+
+/* Add a subtle press-down effect */
+button:active {
+    transform: scale(0.98);
 }
 
 /* Start and Retry Buttons */
@@ -127,7 +176,7 @@ button:hover {
 }
 
 .question-count {
-    margin-bottom: 20px;
+    margin-bottom: 10px; /* Reduced margin */
     font-size: 1.2rem;
     color: #b0b0b0;
 }
@@ -141,6 +190,7 @@ button:hover {
     font-size: 1.5rem;
     margin-bottom: 20px;
     color: #ffffff;
+    min-height: 80px; /* Give space for text to avoid layout shifts */
 }
 
 .answer-section {
@@ -157,4 +207,103 @@ button:hover {
 
 .answer-section button:hover {
     background-color: #555555;
+}
+
+/* Timer Text Style */
+.timer-section {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #bb86fc; /* Purple accent */
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+/* --- New Timer Bar Styles --- */
+.timer-bar-container {
+    width: 100%;
+    height: 8px;
+    background-color: #333;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.timer-bar {
+    height: 100%;
+    width: 100%;
+    background-color: #bb86fc;
+    border-radius: 4px;
+    /* The animation is applied here. 'linear' ensures a smooth, constant speed */
+    animation: shrinkTimer linear forwards;
+    /* animation-duration is set inline in App.js */
+}
+
+
+/* --- Answer Button Feedback Styles --- */
+
+/* Style for the correct answer (always green) */
+.answer-section button.correct {
+    background-color: #00c853; /* Green */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Style for a selected incorrect answer (red) */
+.answer-section button.incorrect {
+    background-color: #d50000; /* Red */
+    color: #ffffff;
+}
+
+/* Style for other non-selected, incorrect answers (faded) */
+.answer-section button.disabled {
+    background-color: #333;
+    opacity: 0.6;
+}
+
+/* Ensure disabled buttons (after answering) don't have a hover effect */
+.answer-section button:disabled:hover {
+    background-color: #333333; /* Default disabled color */
+    cursor: not-allowed;
+}
+
+/* Specifically override hover for correct/incorrect/disabled buttons */
+.answer-section button.correct:disabled:hover,
+.answer-section button.correct:hover {
+    background-color: #00c853;
+    cursor: not-allowed;
+}
+
+.answer-section button.incorrect:disabled:hover,
+.answer-section button.incorrect:hover {
+    background-color: #d50000;
+    cursor: not-allowed;
+}
+
+.answer-section button.disabled:disabled:hover,
+.answer-section button.disabled:hover {
+    background-color: #333;
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* --- Score Message Styles (with Animation) --- */
+.score-message {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    /* Apply the pop-in animation */
+    animation: popIn 0.5s ease-out;
+}
+
+.score-message.low {
+    color: #d50000; /* Red */
+}
+
+.score-message.mid {
+    color: #ffab00; /* Amber/Orange */
+}
+
+.score-message.high {
+    color: #00c853; /* Green */
 }
